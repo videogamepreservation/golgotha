@@ -1,0 +1,30 @@
+
+message_name        params expected                  returns
+----------------------------------------------------------
+build               list(type cursor_x, cursor_y)    0, non-0  (for true/false)
+                    type=object ype
+                    cursor_x & y = poxition on pad
+  - sent by build window to objects to see if they can build a specific type
+    of unit.
+
+convoy_deployed     li_g1_objref                     0
+                    (pointer to convoy) 
+  - sent by convoy to factory when it is sent somewhere, factory clears it's
+    build pad and build pad window.
+
+
+on                  0                                0
+  - sent by triggers, switches, etc to objects they are attached to when
+    they turn on.  The user can modify this message, but on is the default
+
+off                 0                                0
+  - sent by triggers etc to objects they are attached to when
+    they turn off.  The user can modify this message, but off is the default
+
+set_course         start_object                      0, non-0 (not ACKed/ACKed)
+  - sent by factories to objects when they built
+
+                   
+reached             path_object_reached              0
+  - signals an object that a new path point has been reached
+

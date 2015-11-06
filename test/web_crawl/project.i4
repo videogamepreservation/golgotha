@@ -1,0 +1,23 @@
+[executable crawl]
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 X11_display
+  use file=../../i4/project.i4 win32_display
+  use file=../../i4/project.i4 math
+  use file=../../i4/project.i4 pull_menu
+  use file=../../i4/project.i4 lisp_class        
+  use file=../../i4/project.i4 jpg_load
+  use file=../../i4/project.i4 networking
+  use file=../../i4/project.i4 ram_files
+  add_include_directory .  
+
+  ram_file background.tga
+  ram_file logo.jpg
+  ram_file default.scm
+  ram_file menu.scm
+
+  add_to_executable "../../golg/screen_shot.cc"
+  "fb_thread.cc"
+  "win.cc"
+  "url.cc"
+  "crawl.cc"
+

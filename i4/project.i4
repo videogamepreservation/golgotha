@@ -1,0 +1,442 @@
+[lib dll_base]
+  linux "threads/no_threads.cc"
+
+#  linux "threads/linux/threads.cc"
+#  linux add_to_executable "/lib/libpthread.a"
+
+  win32 "threads/win32_threads.cc"
+
+  win32 add_include_directory c:/dx6/include
+  win32 add_include_directory c:/msdev/vc/include
+  win32 add_to_executable "file/win32/win_file.cc"
+  win32 "time/win_time.cc"
+  win32 "main/win_main.cc"
+  win32 "time/timedev.cc" 
+  win32 "app/win32_registry.cc"
+  linux "app/linux_registry.cc"
+
+  "file/async.cc"
+
+
+
+  linux add_to_executable "file/linux/linux_file.cc"
+
+  linux "main/nrm_main.cc"
+  linux "time/unixtime.cc"
+  linux "time/timedev.cc"
+
+  "inc/search.cc"
+  "file/file.cc"
+  "file/buf_file.cc"
+  "checksum/checksum.cc"
+  "time/profile.cc"  
+ 
+  add_to_executable "memory/malloc.cc"  # memory_manager initializes through i4_init
+  "memory/bmanage.cc"
+  "memory/growheap.cc"
+  "init/init.cc"
+
+  add_to_executable "error/error.cc"  # add_to_executable because having problems with breakpoints
+  win32 add_to_executable "error/msvc_exec.cc"
+
+  "error/alert.cc"
+
+  "network/login.cc"
+
+  "string/str_checksum.cc"
+  "string/string.cc"
+  "status/status.cc"
+
+  add_include_directory .
+  add_include_directory inc
+
+#  linux hostname k6.crack.com add_include_directory "/usr/local/pthreads/include"
+#  linux hostname k6.crack.com add_to_executable "/usr/local/pthreads/lib/libpthread.a"
+#  linux nothostname k6.crack.com add_to_executable "/lib/libpthread.so.0"
+
+  win32 profile add_to_plugin c:\msdev\vc\lib\glowcode.lib
+
+  win32 add_to_plugin        c:\msdev\vc\lib\comctl32.lib
+  win32 add_to_executable c:\msdev\vc\lib\comctl32.lib
+
+  win32 add_to_plugin        c:\msdev\vc\lib\msvcrt.lib
+  win32 add_to_executable c:\msdev\vc\lib\msvcrt.lib
+
+  win32 add_to_plugin        c:\msdev\vc\lib\oldnames.lib 
+  win32 add_to_executable c:\msdev\vc\lib\oldnames.lib 
+
+  win32 add_to_plugin        c:\msdev\vc\lib\kernel32.lib
+  win32 add_to_executable c:\msdev\vc\lib\kernel32.lib
+
+  win32 add_to_executable c:\msdev\vc\lib\ole32.lib
+  win32 add_to_executable c:\msdev\vc\lib\advapi32.lib
+  win32 add_to_executable c:\msdev\vc\lib\uuid.lib
+  win32 add_to_executable c:\msdev\vc\lib\user32.lib
+  linux add_to_executable "/usr/lib/libstdc++.so"
+
+[lib base]
+  use dll_base
+
+[list ram_files]
+  use dll_base
+  add_to_executable "file/ram_file_man.cc"
+
+[lib rectlist]
+  use dll_base
+  "area/rectlist.cc"
+#  add_to_executable  "area/rect_debug.cc"      # for debugin clip list
+
+[lib image] 
+  use rectlist
+  "image/image.cc"
+  "image/image8.cc" 
+  "image/image16.cc"       
+  "image/image32.cc"
+  "palette/pal.cc"
+
+[lib device]  
+  use dll_base
+  "device/processor.cc"
+  win32 "device/win32_cpu.cc"
+  "device/device.cc"
+  "device/event.cc"
+  "device/kernel.cc"
+
+[lib quantize]
+  use image
+  "quantize/median.cc"
+  "quantize/histogram.cc"
+  "quantize/dither_quantize.cc"
+
+[list dx_guid]
+  win32 add_to_executable "c:\dx6\lib\dxguid.lib"
+
+[lib sound]
+  use dll_base
+
+  "sound/sound.cc"  
+  "loaders/wav_load.cc"
+
+  win32 use dx_guid
+  win32 add_to_executable "c:\dx6\lib\dsound.lib"
+  win32 add_to_executable "sound/dsound/a3d.lib"
+  win32 add_to_executable "sound/dsound/direct_sound.cc"
+
+[lib ttree]
+  use dll_base
+  "inc/ttree.cc"
+
+
+
+[lib image_load]
+  use image
+  "loaders/load.cc"
+
+[lib pcx]
+  use image_load
+  add_to_executable "loaders/pcx_load.cc"
+
+[lib bmp]
+  use image_load
+  add_to_executable "loaders/bmp_load.cc"
+  "loaders/bmp_write.cc"
+
+[lib tga]  
+  use image_load
+  add_to_executable "loaders/tga_load.cc"
+  "loaders/tga_write.cc"
+
+[lib pull_menu]
+  use lisp
+  "menu/pull.cc"
+  "gui/li_pull_menu.cc"
+
+[lib gui]
+  use device
+  use tga 
+  use pcx 
+  use bmp 
+  use ram_files
+  use keys 
+        
+  ram_file "resource/helvetica_8.tga"
+  ram_file "resource/closicon.tga"
+  ram_file "resource/downicon.pcx"
+  ram_file "resource/i4.res"
+  ram_file "resource/lefticon.pcx"
+  ram_file "resource/minus.pcx"
+  ram_file "resource/normcurs.pcx"
+  ram_file "resource/normfont.pcx"
+  ram_file "resource/plus.pcx"
+  ram_file "resource/rigticon.pcx"
+  ram_file "resource/sqr2curs.pcx"
+  ram_file "resource/textcurs.pcx"
+  ram_file "resource/upicon.pcx"
+  ram_file "resource/bground.tga"
+  ram_file "resource/ok.tga"
+  ram_file "resource/cancel.tga"
+
+  "font/font.cc"
+  "font/plain.cc"
+  "font/anti_prop.cc"
+  "window/style.cc"
+  "menu/menu.cc"
+  "menu/key_item.cc"
+
+  "menu/boxmenu.cc"
+  "menu/menuitem.cc"
+  "menu/textitem.cc"
+  "menu/image_item.cc"
+  "gui/button.cc"
+  "gui/butbox.cc"
+  "gui/text_scroll.cc"
+  "gui/image_win.cc"
+
+  "window/cursor.cc"    
+  "window/window.cc"
+  "window/win_evt.cc"
+  "window/colorwin.cc"
+  "window/dragwin.cc"
+  "status/gui_stat.cc"
+
+
+  "gui/scroll_bar.cc"
+  "gui/create_dialog.cc"
+  "gui/slider.cc"
+  "gui/smp_dial.cc"
+  "gui/text_input.cc"
+  "gui/list_box.cc"
+  "time/gui_prof.cc"
+  "gui/gradiant.cc"
+  "gui/divider.cc"
+  "gui/tab_bar.cc"
+
+  add_to_executable "window/mwmstyle.cc"
+
+
+
+# gets a filename from the using a system dialog
+[lib get_filename]
+  use gui
+  win32 add_to_executable c:\msdev\vc\lib\comdlg32.lib
+  win32 "file/win32/win_open.cc"
+  linux "file/linux/unix_open.cc"
+
+
+[lib dir]
+  use dll_base
+  "loaders/dir_load.cc"
+  "loaders/dir_save.cc"
+
+
+[lib jpg_load]
+  use image_load
+  add_to_executable "loaders/jpg_load.cc"  
+  "loaders/jpg/jccoefct.cc"  
+  "loaders/jpg/jcmaster.cc"
+  "loaders/jpg/jdapistd.cc"  
+  "loaders/jpg/jdhuff.cc"	
+  "loaders/jpg/jdmerge.cc"   
+  "loaders/jpg/jfdctflt.cc"	
+  "loaders/jpg/jidctint.cc"  
+  "loaders/jpg/jquant2.cc"
+  "loaders/jpg/jccolor.cc"   
+  "loaders/jpg/jcomapi.cc"	
+  "loaders/jpg/jdatasrc.cc"  
+  "loaders/jpg/jdinput.cc"	
+  "loaders/jpg/jdphuff.cc"   
+  "loaders/jpg/jfdctfst.cc"	
+  "loaders/jpg/jidctred.cc"  
+  "loaders/jpg/jutils.cc"
+  "loaders/jpg/jcdctmgr.cc"  
+  "loaders/jpg/jcparam.cc"	
+  "loaders/jpg/jdcoefct.cc"  
+  "loaders/jpg/jdmainct.cc"	
+  "loaders/jpg/jdpostct.cc"  
+  "loaders/jpg/jfdctint.cc"	
+  "loaders/jpg/jmemmgr.cc"   
+  "loaders/jpg/wrtarga.cc"
+  "loaders/jpg/jchuff.cc"    
+  "loaders/jpg/jcphuff.cc"	
+  "loaders/jpg/jdcolor.cc"   
+  "loaders/jpg/jdmarker.cc"	
+  "loaders/jpg/jdsample.cc"  
+  "loaders/jpg/jidctflt.cc"	
+  "loaders/jpg/jmemnobs.cc"
+  "loaders/jpg/jcmarker.cc"  
+  "loaders/jpg/jdapimin.cc"	
+  "loaders/jpg/jddctmgr.cc"  
+  "loaders/jpg/jdmaster.cc"	
+  "loaders/jpg/jerror.cc"    
+  "loaders/jpg/jidctfst.cc"	
+  "loaders/jpg/jquant1.cc"
+
+[lib jpg_write]
+  use jpg_load
+  "loaders/jpg_write.cc"
+  "loaders/jpg/jcmainct.cc"
+  "loaders/jpg/jcprepct.cc"
+  "loaders/jpg/jcsample.cc"
+  "loaders/jpg/jcinit.cc"
+  "loaders/jpg/jcapistd.cc"  
+  "loaders/jpg/jcapimin.cc"
+
+
+
+[lib dll]
+  use base  
+  win32 "dll/win32_dll.cc"
+  linux "dll/linux_dll.cc"
+  add_to_executable dll/dll_man.cc
+  linux add_to_executable /lib/libdl.so.2
+
+[lib networking]
+  use base
+  add_to_executable "network/tcpip.cc"
+  "network/net_prot.cc"
+  win32 add_to_executable "c:\msdev\vc\lib\wsock32.lib" 
+
+[lib async_files]
+  use base
+  linux use networking  # linux uses sockets to comminicate with async-file reader      
+  linux add_to_executable "file/linux/async.cc"
+
+
+[lib music]
+  use base
+  "music/stream.cc"
+
+
+[lib keys]
+  use dll_base
+  device/keys.cc
+  device/key_man.cc
+
+[lib display]
+  use image
+  use device
+  use keys
+  "video/display.cc"
+  win32 "video/win32/win32_input.cc"
+  win32 add_to_executable c:\msdev\vc\lib\gdi32.lib
+  win32 add_to_executable c:\msdev\vc\lib\shell32.lib
+  win32 add_include_directory c:\msdev\vc\mfc\include
+  win32 add_to_executable video/win32/display.res
+  win32 link_as_windowed_app
+
+[lib win32_display]
+  use display
+  win32 add_to_executable "video/win32/win32.cc"
+
+[lib dx5_display]
+  use display
+  win32 add_include_directory c:/msdev/include
+  win32 use dx_guid
+  win32 "video/win32/dx5_error.cc"
+  win32 "video/win32/dx5_mouse.cc"
+  win32 "video/win32/dx5_util.cc"
+  win32 "video/win32/dx_cursor.cc"
+  win32 "video/win32/dd_cursor.cc"
+  win32 add_to_executable "video/win32/dx5.cc"
+  win32 add_to_executable "c:\dx6\lib\ddraw.lib"
+  win32 add_to_executable "c:\dx6\lib\dinput.lib"
+
+
+[lib X11_display]
+  use display
+  linux add_to_executable "video/x11/x11_display.cc"
+  linux "video/x11/x11_input.cc"
+  linux add_to_executable /usr/X11R6/lib/libX11.so
+  linux add_to_executable /usr/X11R6/lib/libXext.so
+
+
+[lib glide_display]
+  use display
+  linux add_include_directory "/usr/local/glide/include"
+
+  video/glide/glide_display.cc
+
+  linux "video/x11/x11_input.cc"
+  linux add_to_executable "video/glide/x11_glide.cc"      # add this to parent target not library
+  linux add_to_executable /usr/local/glide/lib/libglide2x.so
+  linux add_to_executable /usr/X11R6/lib/libX11.so
+  linux add_to_executable /usr/X11R6/lib/libXext.so
+
+  win32 use dx5_display
+  win32 add_to_executable "video/glide/win32_glide.cc"
+
+
+[list self_modify]
+  use base
+  win32 add_to_executable "main/win32_self_modify.cc"
+
+[lib app]
+  use gui
+  "window/wmanager.cc"
+  "app/app.cc"
+
+[lib math]
+  use dll_base
+  "math/spline.cc"
+  "math/transform.cc"
+  "math/random.cc"
+
+[lib lisp]
+  use base
+  use dir
+  "lisp/lisp.cc"
+  win32 add_to_executable "lisp/msvc_lip.cc"
+  "lisp/li_types.cc"
+  "lisp/li_alloc.cc"
+
+[lib lisp_class]
+  add_to_executable "lisp/li_class.cc"
+
+[lib lisp_load]
+  use dll_base
+  "lisp/li_load.cc"
+
+[lib lisp_dialog]
+  use app
+  add_to_executable "lisp/li_dialog.cc"
+
+[lib mp3_load]
+  use base
+  loaders/mp3_load.cc
+  loaders/mp3/decode.cc 
+  loaders/mp3/dct64.cc
+  loaders/mp3/common.cc 
+  loaders/mp3/decode_2to1.cc 
+  loaders/mp3/decode_4to1.cc
+  loaders/mp3/tabinit.cc 
+  loaders/mp3/layer1.cc 
+  loaders/mp3/layer2.cc 
+  loaders/mp3/layer3.cc
+  loaders/mp3/getlopt.cc 
+  loaders/mp3/equalizer.cc
+
+[lib everything]
+  use math
+  use rectlist 
+  use image 
+  use device 
+  use quantize 
+  use sound 
+  use fonts 
+  use image_load 
+  use pcx 
+  use bmp 
+  use tga 
+  use gui 
+  use dir 
+  use jpg
+  use dll 
+  use networking 
+  use display 
+  use glide_display 
+  use dx5_display
+
+
+[executable lisp_test]
+  use lisp
+  "lisp/lisp_test.cc"  

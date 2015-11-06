@@ -1,0 +1,21 @@
+[executable setup]
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 get_filename
+  use file=../../i4/project.i4 jpg_load
+  use file=../../i4/project.i4 X11_display
+  use file=../../i4/project.i4 win32_display
+  use file=../../i4/project.i4 dx5_display
+  use file=../../i4/project.i4 glide_display
+  use file=../../i4/project.i4 math
+  use file=../../i4/project.i4 lisp
+  use file=../../i4/project.i4 mp3_load
+  ram_file "setup.jpg"
+  ram_file "thanks.jpg"
+  ram_file "setup_font.tga"
+  ram_file "resource.res"
+  ../../i4/loaders/wav_load.cc
+  add_include_directory .  
+  ../../golg/g1_file.cc
+
+  inst_win32.cc
+  "setup.cc"

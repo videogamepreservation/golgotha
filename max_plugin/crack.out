@@ -1,0 +1,179 @@
+Root                                    
+  Group14                               
+    Box21                               [c:/airvehicl/planepanelgrill.tga]
+
+    Box32                               [c:/airvehicl/planepanelgrill.tga]
+
+    Box47                               [c:/airvehicl/planepipespanel.tga]
+
+    Box20                               [c:/airvehicl/planehotpanel.tga]
+
+    Box42                               [c:/airvehicl/engbottomside.tga]
+
+    Box33                               [c:/airvehicl/engbottomside.tga]
+
+    Box12                               [c:/airvehicl/engbottomside.tga]
+
+    Box40                               [c:/airvehicl/planehotpanel.tga]
+
+    Box11                               [c:/airvehicl/engbottomside.tga]
+
+    Box18                               [c:/airvehicl/planepanelgrilllights.tga]
+
+    Box08                               [c:/airvehicl/engbottomside.tga]
+
+    Box71                               [c:/airvehicl/midpanelone.tga]
+
+    Box74                               [c:/airvehicl/midpanelone.tga]
+
+    Box41                               [c:/airvehicl/engverytop1.tga]
+
+    Box72                               [c:/airvehicl/planepanelgrillthreewide.tga]
+
+    Box23                               [c:/airvehicl/midpanelone.tga]
+
+    Box22                               [c:/airvehicl/planeblowerair2.tga]
+
+    Box77                               [c:/airvehicl/midpanelone.tga]
+
+    Box78                               [c:/airvehicl/planethreeportspanel.tga]
+
+    Box111                              [c:/airvehicl/planepanelgrillthreewide.tga]
+
+    Box19                               [c:/airvehicl/planethreeportspanel.tga]
+
+    Box28                               [c:/airvehicl/twoports.tga]
+
+    Box46                               [c:/airvehicl/planepanelgrillthreeshort.tga]
+
+    Box53                               [c:/airvehicl/engbottom.tga]
+
+    Box29                               [c:/airvehicl/planepanelgrillthreewide.tga]
+
+    Box79                               [c:/airvehicl/planehotpanel.tga]
+
+    Box68                               [c:/airvehicl/twoports.tga]
+
+    Box31                               [c:/airvehicl/midpanelone.tga]
+
+    Box36                               [c:/airvehicl/midpanelone.tga]
+
+    Box37                               [c:/airvehicl/planethreeportspanel.tga]
+
+    Box112                              [c:/airvehicl/planepanelgrillthreewide.tga]
+
+    Box54                               [c:/airvehicl/engbottom.tga]
+
+    Box66                               [c:/airvehicl/planehotpanel.tga]
+
+    Box83                               [c:/airvehicl/planepanelgrillthreeshort.tga]
+
+    Box70                               [c:/airvehicl/planepanelgrill.tga]
+
+    Box80                               [c:/airvehicl/engverytop1.tga]
+
+    Box65                               [c:/airvehicl/planethreeportspanel.tga]
+
+    Box67                               [c:/airvehicl/planepanelgrilllights.tga]
+
+    Box84                               [c:/airvehicl/planepipespanel.tga]
+
+    Box75                               [c:/airvehicl/planepanelgrill.tga]
+
+    Box01                               [c:/airvehicl/engbottomside.tga]
+
+    Box03                               [c:/airvehicl/engbottomside.tga]
+
+    Box15                               [c:/airvehicl/engbottomside.tga]
+
+    Box69                               [c:/airvehicl/planeblowerair2.tga]
+
+  Group15                               
+    Box56                               [c:/airvehicl/planepanelgrillthreewide.tga]
+
+    Box57                               [c:/airvehicl/planepanelgrillthreewide.tga]
+
+    Box43                               [c:/airvehicl/midpanelfourlongeng.tga]
+
+    Box48                               [c:/airvehicl/midpanelhoses.tga]
+
+    Box34                               [c:/airvehicl/midpanelfourlongwindow.tga]
+
+    Box49                               [c:/airvehicl/midpanelone.tga]
+
+    Box26                               [c:/airvehicl/midpanelone.tga]
+
+    Box44                               [c:/airvehicl/planepanelgrillthreewidegreen.tga]
+
+    Box25                               [c:/airvehicl/midpanelhoses.tga]
+
+    Box24                               [c:/airvehicl/midpanelfourlongeng.tga]
+
+    Box50                               [c:/airvehicl/midpanelfourlong.tga]
+
+    Box35                               [c:/airvehicl/planepanelmissle.tga]
+
+    Box38                               [c:/airvehicl/midpanelfourlong.tga]
+
+    Box27                               [c:/airvehicl/midpanelfourlong.tga]
+
+  Group04                               
+    Box88                               [c:/airvehicl/driveshaft2.tga]
+
+    Box13                               [c:/airvehicl/driveshaft1.tga]
+
+    Box52                               [c:/airvehicl/driveshaft2.tga]
+
+    Box106                              [c:/airvehicl/driveshaft1.tga]
+
+    Box17                               [c:/airvehicl/eng2.tga]
+
+    Box62                               [c:/airvehicl/eng1.tga]
+
+    Box09                               [c:/airvehicl/driveshaft2.tga]
+
+    Box96                               [c:/airvehicl/driveshaft1.tga]
+
+    Box101                              [c:/airvehicl/eng1.tga]
+
+    Box105                              [c:/airvehicl/driveshaft2.tga]
+
+    Box05                               [c:/airvehicl/driveshaft1.tga]
+
+    Box110                              [c:/airvehicl/eng2.tga]
+
+  Box55                                 
+  Box51                                 
+  Box39                                 
+  Box30                                 
+  Box16                                 
+  Box14                                 
+  Box10                                 
+  Box07                                 
+  Box04                                 
+  Box02                                 
+  Group16                               
+    tread05                             [c:/airvehicl/trackblacklong.tga]
+
+    tread04                             [c:/airvehicl/trackblackshort.tga]
+
+    tread05                             [c:/airvehicl/trackblacklong.tga]
+
+    tread02                             [c:/airvehicl/trackblackshort.tga]
+
+    Box06                               [c:/airvehicl/trackblacklong.tga]
+
+    tread01                             [c:/airvehicl/halftreadright1.tga]
+
+    tread03                             [c:/airvehicl/halftreadright1.tga]
+
+    tread03                             [c:/airvehicl/halftreadright1.tga]
+
+    Box06                               [c:/airvehicl/trackblacklong.tga]
+
+    tread02                             [c:/airvehicl/trackblackshort.tga]
+
+    tread04                             [c:/airvehicl/trackblackshort.tga]
+
+    tread01                             [c:/airvehicl/halftreadright1.tga]
+

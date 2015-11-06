@@ -1,0 +1,1 @@
+text_id_2_file    %S/%x%x%x%x.gtx

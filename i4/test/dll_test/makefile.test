@@ -1,0 +1,16 @@
+FLAGS=-g -I../../../i4 -I../../../i4/inc
+
+all: test test1.dll test2.dll
+
+test: test.cc linux_dll.o test.hh
+	g++ $(FLAGS) -o test -rdynamic test.cc linux_dll.o -ldl
+
+test1.dll: test1.cc test.hh
+	g++ $(FLAGS) -o test1.dll -shared -Wl,-soname,test1.dll test1.cc
+
+test2.dll: test2.cc test.hh
+	g++ $(FLAGS) -o test2.dll -shared -Wl,-soname,test2.dll test2.cc
+
+linux_dll.o: ../../dll/linux_dll.cc
+	g++ $(FLAGS) -c -o linux_dll.o ../../dll/linux_dll.cc
+

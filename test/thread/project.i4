@@ -1,0 +1,5 @@
+[executable thread]
+  use file=../../i4/project.i4 base
+  add_include_directory .  
+  "thread.cc"
+

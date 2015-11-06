@@ -1,0 +1,109 @@
+57817612.00 total clocks
+54.75%  31652926 clocks  glide_flush :: copy_vram
+28.43%  16438975 clocks  i4_malloc
+6.20%  3582380 clocks  i4_free
+5.90%  3411406 clocks  glide_flush :: mouse save
+1.76%  1015624 clocks  window::child_prepare
+1.51%  872250 clocks  glide_flush :: mouse draw
+1.05%  607691 clocks  glide_flush :: lock(WRITE)
+0.30%  171358 clocks  window::parent_prepare
+0.20%  112793 clocks  glide_flush :: page_flip
+0.00%   0 clocks  jpg_decode
+0.00%   0 clocks  jpg_scanline_decode
+0.00%   0 clocks  glide setup vert
+0.00%   0 clocks  glide select texture
+0.00%   0 clocks  glide end render
+0.00%   0 clocks  glide begin render
+0.00%   0 clocks  glide use texture
+0.00%   0 clocks  glide render list
+0.00%   0 clocks  glide sprite
+0.00%   0 clocks  glide shadows
+0.00%   0 clocks  glide render single poly
+0.00%   0 clocks  suggest_camera_event
+0.00%   0 clocks  controller::parent_draw
+0.00%   0 clocks  controller::draw_overhead
+0.00%   0 clocks  draw_overhead
+0.00%   0 clocks  map::calc_visible
+0.00%   0 clocks  g1_render::draw_building
+0.00%   0 clocks  g1_render::add_trans_trail
+0.00%   0 clocks  g1_render::post_draw_quads
+0.00%   0 clocks  g1_render::draw_outline
+0.00%   0 clocks  g1_render::render_sprite
+0.00%   0 clocks  ::render_object (project/pack)
+0.00%   0 clocks  ::render_object (light)
+0.00%   0 clocks  ::render_object (transform)
+0.00%   0 clocks  border frame draw
+0.00%   0 clocks  player_info:: ai->think()
+0.00%   0 clocks  notify_target_pos_change
+0.00%   0 clocks  map.cc post_think objects
+0.00%   0 clocks  map.cc think objects
+0.00%   0 clocks  terrain_height
+0.00%   0 clocks  calc_pitch_roll
+0.00%   0 clocks  calc_height_pitch_roll
+0.00%   0 clocks  get_map_height
+0.00%   0 clocks  draw objects
+0.00%   0 clocks  map_fast::render poly
+0.00%   0 clocks  map_fast::use texture
+0.00%   0 clocks  map_fast::clip tri
+0.00%   0 clocks  map_fast::backface test
+0.00%   0 clocks  map_fast::pack light
+0.00%   0 clocks  map_fast::project
+0.00%   0 clocks  map_fast::transform
+0.00%   0 clocks  map_fast::pack uv's
+0.00%   0 clocks  map_fast::clip codes
+0.00%   0 clocks  map_fast::clear structures
+0.00%   0 clocks  map_fast::gen obj list
+0.00%   0 clocks  map_fast::dra objects
+0.00%   0 clocks  map_fast::draw terrain
+0.00%   0 clocks  map_fast::draw tri
+0.00%   0 clocks  solve_astar
+0.00%   0 clocks  unoccupy_location
+0.00%   0 clocks  calc model 9
+0.00%   0 clocks  calc model 8
+0.00%   0 clocks  calc model 7
+0.00%   0 clocks  calc model 6
+0.00%   0 clocks  calc model 5
+0.00%   0 clocks  calc model 4
+0.00%   0 clocks  calc model 3
+0.00%   0 clocks  calc model 2
+0.00%   0 clocks  calc model 1
+0.00%   0 clocks  calc model
+0.00%   0 clocks  g1_draw_sky
+0.00%   0 clocks  sfx_update
+0.00%   0 clocks  particle_emit::think
+0.00%   0 clocks  map_piece::move
+0.00%   0 clocks  map_piece::think
+0.00%   0 clocks  map_piece::update_rumble
+0.00%   0 clocks  map_piece::check_move
+0.00%   0 clocks  map_piece::suggest_move
+0.00%   0 clocks  map piece::find target
+0.00%   0 clocks  stank::think
+0.00%   0 clocks  light::unoccupy
+0.00%   0 clocks  light::occupy
+0.00%   0 clocks  explode_model_draw::get_ambient
+0.00%   0 clocks  explode_model_draw::transform
+0.00%   0 clocks  explode_model draw
+0.00%   0 clocks  explode_model think
+0.00%   0 clocks  explode_model setup
+0.00%   0 clocks  glide free vram texture
+0.00%   0 clocks  glide install vram texture
+0.00%   0 clocks  tex_heap::cleanup()
+0.00%   0 clocks  tex_heap::free()
+0.00%   0 clocks  tex_heap::alloc()
+0.00%   0 clocks  tex_heap::cleanup()
+0.00%   0 clocks  tex_heap::free()
+0.00%   0 clocks  tex_heap::alloc()
+0.00%   0 clocks  tmanage get texture
+0.00%   0 clocks  mip_24_to_16
+0.00%   0 clocks  make_next_mip
+0.00%   0 clocks  li_gc
+0.00%   0 clocks  app::get_input
+0.00%   0 clocks  app::refresh
+0.00%   0 clocks  app::calc_model
+0.00%   0 clocks  profile window refresh
+0.00%   0 clocks  ::buffered file
+0.00%   0 clocks  File Read
+0.00%   0 clocks  File Close
+0.00%   0 clocks  System file Open
+0.00%   0 clocks  File Open
+0.00%   0 clocks  File tell

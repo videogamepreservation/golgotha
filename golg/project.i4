@@ -1,0 +1,288 @@
+# the drive map library is used by cd_maker and maxtool
+# it is used to use .cd files (open's work transparently with them)
+[lib g1_file]
+  use file=../i4/project.i4 base
+  add_include_directory .
+  add_to_executable g1_file.cc
+  
+
+# this is a list of other libraries the game uses
+# different parts of the game can just use 'libs_use' so they get all the correct include
+# directories
+[list libs_used]
+  use file=../i4/project.i4 app
+  use file=../i4/project.i4 jpg_load
+  use file=../i4/project.i4 glide_display
+  use file=../i4/project.i4 math
+  use file=../i4/project.i4 dir
+  use file=../i4/project.i4 dll  
+  use file=../i4/project.i4 networking
+  use file=../i4/project.i4 music
+  use file=../i4/project.i4 sound
+  use file=../i4/project.i4 get_filename
+  use file=../i4/project.i4 lisp
+  use file=../i4/project.i4 lisp_load
+  use file=../i4/project.i4 pull_menu
+  use file=../render/project.i4 render  
+  add_include_directory .  
+
+[list ram_files]                                                               
+  use file=../i4/project.i4 ram_files
+
+[list dll_needs] 
+  use file=../i4/project.i4 app
+  use file=../render/project.i4 render
+  add_include_directory .
+
+[list editor]
+#--------------------- editor code-------------------------------
+  use dll_needs
+  use file=../i4/project.i4 lisp_dialog
+  add_to_executable editor/dialogs/objref_edit.cc
+         
+  editor/contedit.cc    # main controller edit window definitions
+  editor/ce_event.cc    # controller edit event handling definitions
+  editor/ce_movie.cc
+
+
+
+  add_to_executable editor/editor.cc
+
+                    editor/mode/e_mode.cc
+  add_to_executable editor/mode/e_team.cc
+  add_to_executable editor/mode/e_tile.cc
+  add_to_executable editor/mode/e_camera.cc
+  add_to_executable editor/mode/e_object.cc
+#  add_to_executable editor/mode/e_ai.cc
+  add_to_executable editor/mode/e_light.cc
+
+  editor/e_state.cc
+
+  editor/dialogs/scroll_picker.cc
+  editor/dialogs/pick_win.cc
+  editor/dialogs/debug_win.cc
+  editor/dialogs/e_time.cc
+  editor/dialogs/scene.cc
+  editor/dialogs/d_light.cc
+  editor/dialogs/d_time.cc
+  editor/dialogs/sky_picker.cc
+  editor/dialogs/tile_picker.cc
+  editor/dialogs/object_picker.cc
+  editor/dialogs/tile_win.cc
+  editor/dialogs/obj_win.cc
+#  editor/dialogs/path_win.cc
+
+  editor/commands/objects.cc
+  editor/commands/draw_modes.cc
+  editor/commands/terrain.cc
+  editor/commands/undo.cc
+  editor/commands/merge_terrain.cc
+  editor/commands/resize_level.cc
+  editor/commands/rotate_level.cc
+  editor/commands/new_level.cc
+  editor/commands/fill.cc
+  editor/commands/terrain_bitmap.cc
+  add_to_executable editor/commands/file_stuff.cc
+  add_to_executable editor/commands/move.cc
+  add_to_executable editor/commands/map_misc.cc
+  add_to_executable editor/commands/map_dump.cc
+
+[lib net_code]
+  use libs_used
+  net/startup.cc
+  net/client.cc
+  net/server.cc
+
+[executable golg]
+
+  use libs_used
+  use libs_used  
+  use net_code
+  use g1_file
+  use file=../render/project.i4 gtext_load
+
+
+  ../i4/file/sub_section.cc
+  camera.cc
+
+  map_view.cc
+
+  tile.cc
+  statistics.cc
+  controller.cc
+
+  overhead.cc
+  map_vis.cc
+  g1_render.cc
+  obj3d.cc
+
+
+  load3d.cc
+  path.cc
+  menu.cc
+  border_frame.cc
+
+  resources.cc
+  reference.cc
+  remove_man.cc
+  player.cc
+  team_api.cc
+  human.cc
+  tick_count.cc
+  map.cc
+  vert_table.cc
+
+  map_data.cc
+  map_vars.cc
+
+  map_vert.cc
+  map_light.cc
+  map_cell.cc
+#  map_block.cc
+  map_man.cc
+  map_fast.cc
+  map_movi.cc
+  level_load.cc
+
+  li_objref.cc
+  image_man.cc
+
+#  path_api.cc
+#  critical_map.cc
+#  critical_graph.cc
+#  solvemap_breadth.cc
+  solvemap_astar.cc
+#  solvegraph_breadth.cc
+
+  light.cc
+
+  selection.cc
+  map_collision.cc
+  g1_object.cc
+  li_interface.cc
+  input.cc
+  g1_tint.cc
+  g1_texture_id.cc
+  options.cc
+
+
+
+  global_id.cc
+  draw_context.cc 
+  f_tables.cc
+  main.cc  
+  make_tlist.cc
+  g1_rand.cc
+
+#  flare.cc
+
+  saver.cc
+  map_save.cc
+  map_lod.cc
+
+  map_path.cc
+  visible.cc
+  sky.cc
+  demo.cc
+
+  ../i4/sound/sfx_id.cc
+  ../render/r1_font.cc
+  objs/vehic_sounds.cc
+  sound_man.cc
+
+  m_flow.cc
+
+  cwin_man.cc
+  add_to_executable screen_shot.cc
+
+  cheat.cc
+
+  "../i4/lisp/li_class.cc"
+  "../i4/lisp/li_vect.cc"
+
+  use editor
+
+#  objs/secret_hider.cc
+  objs/sfx_obj.cc   
+  objs/shockwave.cc
+  objs/explosion1.cc
+  objs/flak.cc
+  objs/turret.cc
+  objs/popup_turret.cc
+  objs/crate.cc
+  objs/base_launcher.cc
+  objs/ai_jim.cc
+  objs/debris.cc
+  objs/bank.cc
+  objs/lawfirm.cc
+  objs/takeover_pad.cc
+
+
+  objs/bullet.cc
+  objs/peontank.cc
+  objs/rocktank.cc
+  objs/trike.cc
+  objs/eleccar.cc
+  objs/jet.cc
+  objs/helicopter.cc
+  objs/engineer.cc
+  objs/tank_buster.cc
+
+  objs/guided_missile.cc
+  objs/shrapnel.cc
+  objs/dropped_bomb.cc
+  objs/rocket.cc
+  objs/smoke_trail.cc
+  objs/buster_rocket.cc
+  objs/repairer.cc
+  objs/supergun.cc
+  objs/super_mortar.cc
+  objs/particle_emitter.cc
+  objs/carcass.cc
+
+
+  objs/damager.cc
+#  objs/miracle.cc    # need to remove the convoy requirement now
+
+  objs/path_object.cc
+
+  objs/ai_builder.cc
+  objs/field_camera.cc
+  objs/beam_weapon.cc
+
+  objs/defaults.cc
+  objs/map_piece.cc
+#  objs/solid.cc
+  objs/miscobjs.cc
+  objs/structure_death.cc
+  add_to_executable objs/def_object.cc
+  objs/target.cc
+  objs/stank.cc
+  objs/model_id.cc
+#  objs/sprite.cc
+#  objs/sprite_object.cc
+  objs/model_draw.cc
+  objs/model_collide.cc
+  objs/fire_angle.cc
+#  objs/scream.cc
+  objs/light_o.cc
+  objs/old_ids.cc
+   
+  objs/tower_missile.cc
+  objs/tower_electric.cc
+  objs/bolt.cc
+
+  objs/bridger.cc
+  objs/bomb_truck.cc
+  objs/explode_model.cc
+  objs/chunk_explosion.cc
+  objs/bases.cc
+  objs/stank_factory.cc
+  objs/fire.cc
+  objs/cloud.cc
+
+  objs/moneyplane.cc
+  objs/moneycrate.cc
+  objs/bomber.cc
+
+  ../i4/time/li_profile.cc

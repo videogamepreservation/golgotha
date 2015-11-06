@@ -1,0 +1,4 @@
+#!/bin/bash
+echo run -nosound -f /u/ddt/src/dlev/d.level > /tmp/dgtmp
+sudo gdb -x /tmp/dgtmp /tmp/golg_debug
+rm -f /tmp/dgtmp

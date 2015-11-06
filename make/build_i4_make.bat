@@ -1,0 +1,3 @@
+echo If you do not have MSDEV installed at C:\MSDEV please edit this file!
+echo attempting to build i4_make......
+cl /Od /Zi /Tp i4_make.cc /MD /Ic:\msdev\vc\include /D_WINDOWS c:\msdev\vc\lib\msvcrt.lib c:\msdev\vc\lib\oldnames.lib c:\msdev\vc\lib\kernel32.lib c:\msdev\vc\lib\wsock32.lib /Fei4_make.exe

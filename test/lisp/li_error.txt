@@ -1,0 +1,2 @@
+expecting type list, but got #inst-options< (render_mode single_pixel) (view_distance near) (sound_volume 63) (ambient_and_music on) (ambient_volume 63) (shadows T) (sound _2d)>
+last file :0

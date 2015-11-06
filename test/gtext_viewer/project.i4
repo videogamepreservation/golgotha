@@ -1,0 +1,12 @@
+[executable gtext_viewer]
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 jpg_load
+  use file=../../i4/project.i4 jpg_write
+  use file=../../i4/project.i4 glide_display
+  use file=../../i4/project.i4 math
+  use file=../../i4/project.i4 dir
+  use file=../../render/project.i4 render
+  use file=../../maxtool/project.i4 texture_update
+
+  add_include_directory .  
+  "gtext_viewer.cc"

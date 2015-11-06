@@ -1,0 +1,46 @@
+[executable minimal]
+  use file=../../i4/project.i4 base
+  use file=../../i4/project.i4 lisp
+  add_include_directory .  
+  "minimal.cc"
+
+[executable load_save]
+  use file=../../i4/project.i4 base
+  use file=../../i4/project.i4 lisp
+  use file=../../i4/project.i4 lisp_load
+  add_include_directory .  
+  "load_save.cc"
+
+[executable functions]
+  use file=../../i4/project.i4 base
+  use file=../../i4/project.i4 lisp
+  add_include_directory .  
+  "functions.cc"
+
+
+[executable class]
+  use file=../../i4/project.i4 base
+  use file=../../i4/project.i4 lisp
+  use file=../../i4/project.i4 lisp_class
+  add_include_directory .  
+  "class.cc"
+
+
+
+[executable new_type]
+  use file=../../i4/project.i4 base
+  use file=../../i4/project.i4 lisp
+  add_include_directory .  
+  "new_type.cc"
+
+[executable dialog]
+  use file=../../i4/project.i4 base
+  use file=../../i4/project.i4 lisp
+  use file=../../i4/project.i4 lisp_class
+  use file=../../i4/project.i4 lisp_dialog
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 X11_display
+  use file=../../i4/project.i4 win32_display
+  add_include_directory .  
+  "dialog.cc"
+

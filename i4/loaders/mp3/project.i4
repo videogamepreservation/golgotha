@@ -1,0 +1,11 @@
+[executable mp3_decoder]
+  use file=../../project.i4 mp3_load
+  use file=../../project.i4 sound
+
+  add_include_directory .
+  "mp3_decoder.cc"
+
+[executable enc_mirror]
+  use file=../../project.i4 base
+  add_include_directory .
+  "enc_mirror.cc"

@@ -1,0 +1,49 @@
+
+[lib gtext_load]
+  use file=../i4/project.i4 dll_base
+  add_include_directory .
+  "gtext_load.cc"
+
+
+[lib render]
+  use file=../i4/project.i4 glide_display
+  use file=../i4/project.i4 jpg_load
+  use file=../i4/project.i4 jpg_write
+  use file=../i4/project.i4 self_modify     
+  add_include_directory .
+#  win32 add_to_executable dx5/r1_dx5.cc
+#  win32 dx5/r1_dx5_texture.cc
+
+  win32 add_to_executable software/r1_software.cc
+  win32 software/r1_software_texture.cc
+  win32 software/r1_software_globals.cc
+  win32 software/tint_manage.cc
+  win32 software/tri_setup.cc
+  win32 software/span_buffer.cc
+  win32 software/rasterize_affine.cc
+  win32 software/rasterize_perspective.cc
+  win32 software/amd3d/span_buffer_amd3d.cc
+  win32 software/amd3d/rasterize_affine_amd3d.cc
+  win32 software/amd3d/rasterize_perspective_amd3d.cc
+  
+  win32 software/mappers.cc
+  
+  win32 software/win32_specific.cc
+  win32 software/draw_line.cc
+ 
+  glide/gr_vram.cc
+  add_to_executable glide/gr_render.cc
+
+  r1_api.cc
+  r1_win.cc
+  tmanage.cc
+  mip.cc
+  tex_id.cc
+  mip_average.cc
+  r1_clip.cc
+    
+
+  add_to_executable "r1_res.cc"
+  ram_file "render.res"
+
+

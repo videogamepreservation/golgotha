@@ -1,0 +1,5 @@
+[executable cloud_test]
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 win32_display
+  add_include_directory .  
+  "cloud_test.cc"

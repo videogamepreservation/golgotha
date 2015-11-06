@@ -1,0 +1,106 @@
+800 464 7928
+800 swb isdn
+52.85   54.70 250.00  *125*
+52.85
+
+
+
+
+DirectX
+
+  - using Blt() to do clears is much much faster than memset.  On many cards
+    the clear can happen async and doesn't take much time.  Even if you call
+    lock() immediately after Blt() it's much faster.
+
+  - Blt's to word alligned boundaries are much faster (~1.5x faster)
+
+  - limit surface locks() & unlocks(),  I went form 204fps to 232fps by limiting locks
+    to 1 lock per frame
+
+  - Implementing a software z-buffer can be accelerated by DirectX by creating the
+    Z-buffer as a directx Surface and using Blt to clear the surface.  This is a little
+    tricky but you can get your clears for much less time.  If you are using a floating
+    point z-buffer,  I recommend creating a 16bit surface that is (width * 2, height),
+    because creating a 32bit surface may not possible clear the high-byte (considered alpha).
+    It is safest to clear the Z buffer to 0 so that the card does not do any transformations
+    on the color value.  This means you have to negate your z-values
+    and reverse you z-compare function.
+
+
+
+
+Threaded Applications
+
+  - for threaded applications, don't use EnterCriticalSection & LeaveCriticalSection section
+    these take about 60cycles to execute (together).  Instead use intel's "bts" instruction
+    which will will cost 6cycles inlined, and 12 cycles if called  (Does anyone know if you
+    need to prefix bts with a "lock" for a multi-processor environment?)
+
+    ********* example replacement class *****
+
+    class critical_section_lock
+    {
+    public:
+      int flag;
+
+      tlock() { flag=0; }
+
+      void __fastcall lock();
+      void __fastcall unlock();
+    };
+
+    void __fastcall critical_section_lock::unlock()
+    {
+      __asm mov [ecx], 0      
+    }
+
+    void __fastcall critical_section_lock::lock()
+    {
+      __asm
+      {
+        start:      
+          bts [ecx], 0
+          jnc success
+          call thread_yield   // give up our time-slice
+          jmp start
+        success:
+      }
+    }
+
+
+General Suggestions
+
+  - converting a float to an int using C-casting under Visual C is very slow
+    because Visual C does a "safe" conversion which involves calling a function
+    changes the FPU registers to set the currect rounding mode and then does a
+    fistp - the meat of the operation, restores the FPU and return.  Most of 
+    the time the FPU will already be in the correct state so using a simple inlined
+    assembly function like this will save a lot of time:
+
+        inline int long ftoi(float f)
+        {
+          int res;
+          __asm
+          {
+            fld f
+            fistp res
+          }
+          return res;
+       }
+
+
+
+  - when timing functions under MSDEV turn off incremental linking. incremental linking often
+    adds an extra "jmp" for every "call" which is used to patch together your code without having
+    to re-layout everything.  This adds 2-3 extra clocks to every function you call.
+   
+  - for small functions use the __fastcall function declaration and for C++,
+    use [ecx] instead of "this" using "this" will cause the compiler to 
+    generate "push ebp, mov ebp, esp" pairs  which may not be needed for simple get/set type
+    functions
+
+
+
+Profiling & tuning
+  
+  - start with small and work your way up.  

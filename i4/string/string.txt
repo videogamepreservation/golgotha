@@ -1,0 +1,84 @@
+Strings under I4 are perhaps one of the most complicated things to
+understand.  
+
+The main string classes are 
+
+i4_const_str                    (strings which cannot be changed or freed)
+i4_str : public i4_const_str    (strings which can be changed and freed)
+
+i4_string_manager_class : public i4_init_class
+
+
+The primary goal of the string classes is to assist translations of
+products.  To enforce translation of all user visible strings, all
+strings must be created by a i4_string_manager_class which loads them
+from a resource file (while can be easily translated).  A resource
+file is a simple text file formatted as follows :
+
+internal external
+
+where is internal is the internal name referred to by the program.  The
+external name is the one the user sees and is might be translated.
+The string manager also supports arrays of strings as follows :
+
+internal { external1 external2 external3 external4 }
+
+optionally you can insert a = between the external and the external as
+follows :
+
+internal = external
+
+this assist parsing match up should you miss a word by accident.
+
+
+An i4_string_manager_class can load up strings from a file via
+load(i4_open_file_function_type opener, char *filename); 
+(see files.txt for details about opener)
+
+Or it can load them up from a memory buffer (i.e. a resource file
+loaded into some memory location) with
+
+i4_bool load_buffer(i4_open_file_function_type opener,
+                    void *internal_buffer, char *error_prefix);
+
+
+Substitutions are allowed in resource files.
+
+internal1 = external1
+internal2 = ${external1}_external2
+
+Once strings have been loaded into a string_manager, then you can
+fetch them with either get or get_array.  
+
+i4_string_manager_class.get("internal2") returns
+i4_const_str("external1_external2")
+
+There is a global string manager defined for convince.
+i4_string_man.  Also the global function i4gets(char *) will
+fetch an external string from it using an internal name.
+
+font->put_string(screen, 10, 10, i4gets("name"), context);
+
+Internal symbol names are stored in a binary tree and a search
+is performed every time you call i4gets().
+
+The difference between i4_const_str and i4_str is that i4_const_str's
+are compacted into a small heap (head to toe) and cannot be freed or
+modified.  An i4_str resides in the main heap (allocated with
+i4_malloc). i4_str's can be deleted or modified.  An i4_str can be
+passed to routines needing i4_const_str because it is derived from it.
+i4_str's are usually constructed from i4_const_strs by insertion,
+concatenation, etc.  This ensures that all i4_str will built from
+parts that are translated, thus being translated themselves.
+
+Strings use iterators to access individual characters.  An iterator
+can be thought of as a pointer.  Incrementing moves to the next
+character, decrementing goes back one character.  i4_const_str.begin()
+returns an iterator referencing the first character in the string,
+while i4_const_str.end() returns an iterator referencing the last+1
+character in a string.  So you iterator through all the characters in
+a string if you want to.  This allows for addition of wide characters
+or kanji-escaped code characters without changes to the rest of the
+application.  (Neither are currently supported though).
+
+

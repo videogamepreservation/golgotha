@@ -1,0 +1,219 @@
+  i4_image_class *im;
+  float *z_buffer;
+  i4_transform_class t;
+  int iw,ih;
+  i4_3d_vector light;
+  int mouse_x, mouse_y;
+  float theta;
+  
+  float get_z(int x, int y) { return z_buffer[x+y*iw]; }
+  void set_z(int x, int y, float z) 
+  {
+    z_buffer[ x + y*iw ]=z; 
+  }
+
+  void clear_z() 
+  { 
+    for (int i=0; i<iw*ih; i++)
+      z_buffer[i]=100000;
+  }
+
+  void render()
+  {
+    srand(0);
+    i4_draw_context_class context(0,0, im->width()-1, im->height()-1);
+    
+    i4_3d_vector circles[3]={i4_3d_vector(0,0,0), i4_3d_vector(0.5,1,0), i4_3d_vector(-2,-2,4)};
+
+    im->clear(0x4f0000, context);
+    clear_z();
+
+    float sx=width()/2, sy=height()/2;
+    float cx=sx,cy=sy;
+   
+
+    for (int j=0; j<3; j++)    
+    {
+      for (int i=0; i<50000; i++)
+      {   
+        float x=frand(),
+              y=frand();
+        float z=frand();
+
+        i4_3d_vector p(x,y,z);
+        p.normalize();
+
+
+        float c1=-p.dot(light);
+        i4_3d_vector reflect=i4_3d_vector(light.x + 2*p.x*c1,
+                                          light.y + 2*p.y*c1,
+                                          light.z + 2*p.z*c1);
+                                          
+
+
+        float light_v=-light.dot(p)*0.7;
+
+        i4_3d_vector pixel_pos(circles[j].x+p.x,circles[j].y+p.y, circles[j].z+p.z);
+        i4_3d_vector t_p;
+        t.transform(pixel_pos, t_p);
+
+        
+        i4_3d_vector view_dir=t_p;
+        view_dir.normalize();
+        float view_dot_r=-view_dir.dot(reflect);
+        if (view_dot_r>=0)
+        {
+          light_v += pow(view_dot_r, 0.4)*0.2;
+        }
+    
+
+        if (light_v<0) 
+          light_v=0;
+        if (light_v>1)
+          light_v=1;
+
+        
+        float ooz=1.0/t_p.z;
+
+        float px=t_p.x * ooz * sx;
+        float py=t_p.y * ooz * sy;
+
+        int ix=(int)(px+cx), iy=(int)(py+cy);
+        if (ix>=0 && iy>=0 && ix<w && iy<h)
+        {
+          if (t_p.z<get_z(ix,iy))
+          {
+            im->put_pixel(ix, iy, (int)(light_v*255.0));
+            set_z(ix,iy, t_p.z);
+          }
+        }
+
+      }
+    }
+
+  }
+
+  void calc_transform()
+  {
+    t.identity();
+    t.mult_translate(0,0,8);
+    t.mult_rotate_x(theta);
+    t.mult_rotate_y(theta);
+  }
+
+
+  char *name() { return "trace_view"; }
+  trace_view(int w, int h) : i4_window_class(w,h)
+  {
+    theta=0;
+
+    i4_pixel_format fmt;
+    fmt.default_format();
+    fmt.alpha_mask=0;
+    fmt.calc_shift();
+
+    iw=w; ih=h;
+    z_buffer=(float *)i4_malloc(w*h*sizeof(float), "");
+    im=i4_create_image(w,h, i4_pal_man.register_pal(&fmt));
+
+    calc_transform();
+    light=i4_3d_vector(0,0,1);
+
+    render();
+  
+  }
+
+
+  i4_bool project_point(i4_3d_vector v, i4_3d_vector &t_v)
+  {
+    t.transform(v, t_v);
+    if (t_v.z>0)
+    {
+      float ooz=1.0/t_v.z;
+      t_v.x=t_v.x * ooz * width()/2.0 + width()/2.0;
+      t_v.y=t_v.y * ooz * height()/2.0 + height()/2.0;
+      return i4_T;
+    }
+    return i4_F;
+
+  }
+
+  void draw_3d_line(i4_3d_vector p1, i4_3d_vector p2, 
+                    w32 color,
+                    i4_draw_context_class &context)
+  {
+    i4_3d_vector t_p1, t_p2;
+
+    if (project_point(p1, t_p1) &&
+        project_point(p2, t_p2))
+      local_image->line((int)t_p1.x, (int)t_p1.y,
+                        (int)t_p2.x, (int)t_p2.y, color, context);
+
+  }
+
+
+  void receive_event(i4_event *ev)
+  {
+    if (ev->type()==i4_event::MOUSE_BUTTON_DOWN)
+    {
+      CAST_PTR(bev, i4_mouse_button_event_class, ev);
+      float fw=width(), fh=height();
+      light=i4_3d_vector((bev->x-fw/2)/(fw/2),
+                         (bev->y-fh/2)/(fh/2),
+                         1);
+      light.normalize();
+                         
+      render();
+      request_redraw();
+      
+      mouse_x=bev->x;
+      mouse_y=bev->y;
+    }
+    else if (ev->type()==i4_event::KEY_PRESS)
+    {
+      theta+=0.2;
+      calc_transform();
+      render();
+      request_redraw();
+    }
+
+    i4_window_class::receive_event(ev);
+  }
+
+  void draw(i4_draw_context_class &context)
+  {
+    im->put_image(local_image, 0,0, context);
+
+    i4_float mx=(mouse_x - width()/2);
+    i4_float my=(mouse_y - height()/2);  
+
+    i4_3d_vector c_pos, c_dir; 
+    t.inverse_transform(i4_3d_vector(0,0,0),c_pos);
+    t.inverse_transform(i4_3d_vector(mx,my, width()),c_dir);  
+
+    c_dir -= c_pos;
+
+
+    draw_3d_line(i4_3d_vector(-1,0,0),
+                 i4_3d_vector(1,0,0),
+                 0x00ff00, context);
+    draw_3d_line(i4_3d_vector(0,-1,0),
+                 i4_3d_vector(0,1,0),
+                 0x00ff00, context);
+    draw_3d_line(i4_3d_vector(0,0,-1),
+                 i4_3d_vector(0,0,1),
+                 0x00ff00, context);
+                 
+
+   
+    draw_3d_line(i4_3d_vector(c_pos.x + mx,
+                              c_pos.y + my,
+                              c_pos.z),
+                 i4_3d_vector(0,0,0),
+                 0xffffff, context);
+                 
+
+
+
+
+  }

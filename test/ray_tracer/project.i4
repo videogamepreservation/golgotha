@@ -1,0 +1,16 @@
+[executable ray]
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 get_filename
+  use file=../../i4/project.i4 jpg_load
+  use file=../../i4/project.i4 X11_display
+  use file=../../i4/project.i4 dx5_display
+  use file=../../i4/project.i4 math
+  use file=../../i4/project.i4 lisp
+  use file=../../i4/project.i4 pull_menu
+  use file=../../render/project.i4 render
+
+  use file=../../i4/project.i4 jpg_write
+
+  ram_file menu.scm
+  ray_tracer.cc
+  r1_softz.cc

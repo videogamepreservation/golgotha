@@ -1,0 +1,3 @@
+[executable cd_maker]
+  use file=../i4/project.i4 base
+  cd_maker.cc

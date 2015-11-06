@@ -1,0 +1,10 @@
+[executable font_test]
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 jpg_load
+  use file=../../i4/project.i4 jpg_write
+  use file=../../i4/project.i4 X11_display
+  use file=../../i4/project.i4 win32_display
+  use file=../../i4/project.i4 dx5_display
+  use file=../../i4/project.i4 math
+  add_include_directory .  
+  "font_test.cc"

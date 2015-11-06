@@ -1,0 +1,14 @@
+/********************************************************************** <BR>
+  This file is part of Crack dot Com's free source code release of
+  Golgotha. <a href="http://www.crack.com/golgotha_release"> <BR> for
+  information about compiling & licensing issues visit this URL</a> 
+  <PRE> If that doesn't help, contact Jonathan Clark at 
+  golgotha_source@usa.net (Subject should have "GOLG" in it) 
+***********************************************************************/
+
+#ifndef __G1_FILE_HH_
+#define __G1_FILE_HH_
+
+void g1_set_cd_image(char *filename);
+
+#endif

@@ -1,0 +1,67 @@
+[lib texture_update]
+  add_include_directory .  
+  use file=../golg/project.i4 g1_file
+  use file=../i4/project.i4 base
+  use file=../render/project.i4 render  
+  use file=../render/project.i4 gtext_load
+  
+  tupdate.cc
+
+[executable maxtool]
+  add_include_directory .  
+#  use file=../i4/project.i4 async_files
+  use file=../i4/project.i4 app
+  use file=../i4/project.i4 lisp
+  use file=../i4/project.i4 jpg_load
+  use file=../i4/project.i4 jpg_write
+  use file=../i4/project.i4 glide_display
+#  use file=../i4/project.i4 win32_display
+  use file=../i4/project.i4 math
+  use file=../i4/project.i4 dir
+  use file=../i4/project.i4 quantize
+  use file=../i4/project.i4 get_filename
+  use file=../i4/project.i4 pull_menu
+  use file=../render/project.i4 render  
+  use texture_update
+
+  ram_file fly_util.res
+  ram_file ../golg/res/g1.res   g1.res
+
+  ../render/r1_font.cc
+  ../golg/light.cc
+  ../golg/draw_context.cc
+  ../golg/obj3d.cc 
+  ../golg/load3d.cc
+  ../golg/g1_tint.cc
+
+  add_to_executable ../golg/screen_shot.cc
+  ../golg/make_tlist.cc
+ 
+#  ../test/ray_tracer/r1_softz.cc
+
+
+  ram_file "keys.res"
+  ram_file "menu.scm"
+  ram_file "maxtool_font.tga"
+
+  m1_info.cc
+  render.cc
+  maxtool.cc
+  max_object.cc
+  max_load.cc
+  st_edit.cc
+  m1_commands.cc
+  m1_test.cc
+  anim_dialog.cc
+  m1_update.cc
+  saveas.cc
+
+  navigate.cc
+  pan.cc
+  translate.cc
+  animate.cc
+  drag_select.cc
+
+  win32 ../max_plugin/maxcomm.cc
+
+

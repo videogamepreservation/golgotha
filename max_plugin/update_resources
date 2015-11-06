@@ -1,0 +1,1 @@
+./resource_save resource.res resource_buf > resource.hh

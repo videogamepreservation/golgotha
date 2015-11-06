@@ -1,0 +1,15 @@
+[executable spin_cube]
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 glide_display
+  use file=../../i4/project.i4 math
+  use file=../../render/project.i4 render  
+  add_include_directory .  
+  "spin_cube.cc"
+
+
+[executable golg_view]
+  use file=../../i4/project.i4 app
+  use file=../../i4/project.i4 glide_display
+  use file=../../i4/project.i4 math
+  use file=../../render/project.i4 render  
+  "gview.cc"

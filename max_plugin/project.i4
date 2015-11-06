@@ -1,0 +1,38 @@
+[plugin maxtool]
+  use file=../i4/project.i4 dll_base
+  use file=../i4/project.i4 dir
+  use file=../i4/project.i4 ram_files
+  add_include_directory ../golg
+  add_include_directory ../render
+  add_include_directory c:/msdev/vc/include
+  add_include_directory c:/msdev/vc/mfc/include
+  add_include_directory sdk_inc
+
+  win32 add_to_executable c:/maxsdk/lib/geom.lib
+  win32 add_to_executable c:/maxsdk/lib/util.lib
+  win32 add_to_executable c:/maxsdk/lib/core.lib
+  win32 add_to_executable c:/maxsdk/lib/gfx.lib
+  win32 add_to_executable c:/maxsdk/lib/mesh.lib
+
+  win32 add_to_executable c:/msdev/vc/lib/user32.lib
+  win32 add_to_executable c:/msdev/vc/lib/comdlg32.lib
+  win32 add_to_executable c:/msdev/vc/lib/winmm.lib
+  win32 add_to_executable c:/msdev/vc/lib/comctl32.lib
+  win32 add_to_executable c:/msdev/vc/lib/gdi32.lib
+
+  opt add_define M1_NO_DEBUG
+
+  add_to_executable plugin.def
+  plugin.rc
+
+  ram_file resource.res
+
+  ../golg/obj3d.cc
+  debug.cc
+  import.cc
+  max_object.cc
+  maxcomm.cc
+  util.cc
+  material.cc
+  crkutil.cc
+  win32 target_dir dlls
